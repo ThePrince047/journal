@@ -10,7 +10,6 @@
 
     $result = $con->query("SELECT * FROM tbproduct LIMIT $starting_limit, $results_per_page");
 ?>
-
 <html>
 <script>
     function deleteProduct(id) {
@@ -45,7 +44,6 @@
             }
         ?>
     </table>
-
     <nav aria-label="Page navigation">
         <ul class="pagination">
             <?php

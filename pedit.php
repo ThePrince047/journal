@@ -1,8 +1,6 @@
 <?php
     include("include/header.php");
     include("include/config.php");
-
-    // Check if id is passed via GET
     if(isset($_GET['id'])){
         $id = $_GET['id'];
         $sql = "SELECT * FROM tbproduct WHERE pid = $id";
@@ -18,18 +16,12 @@
             exit();
         }
     }
-
-    // Check if form is submitted
     if(isset($_POST['submit'])){
-        // Sanitize input values
         $pname = $con->real_escape_string($_POST['pname']);
         $price = $con->real_escape_string($_POST['price']);
         $qty = $con->real_escape_string($_POST['qty']);
         $category = $con->real_escape_string($_POST['category']);
-        
-        // Update query
         $query = "UPDATE tbproduct SET pname='$pname', qty='$qty', price='$price', category='$category' WHERE pid='$id'";
-        
         if ($con->query($query) === TRUE) {
             header("Location: product.php");
             exit();  // Exit after redirection
@@ -38,7 +30,6 @@
         }
     }
 ?>
-
 <html>
 <body>
 <div style="padding: 20px;">
