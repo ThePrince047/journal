@@ -1,74 +1,35 @@
 <?php
-    include("include\header.php");
-    if(!isset($_SESSION['username'])){
-        header('Location: login.php');
-    }
+    include("include/header.php");
+    if (!isset($_SESSION['username'])) header('Location: login.php');
 ?>
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management</title>
     <style>
-        /* Container for the image rotator */
-        .image-rotator {
-            position: relative;
-            max-width: 100%; /* Adjust the width to fit your layout */
-            height: 400px; /* Adjust the height as needed */
-            overflow: hidden;
-        }
-
-        /* Images inside the rotator */
-        .image-rotator img {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        /* Active image class */
-        .image-rotator img.active {
-            opacity: 1;
-        }
+        .image-rotator { position: relative; width: 100%; height: 400px; overflow: hidden; }
+        .image-rotator img { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; }
+        .image-rotator img.active { opacity: 1; }
     </style>
 </head>
 <body>
-<div style="padding: 20px;">
-    <!-- Image Rotator -->
-    <div class="image-rotator">
-        <img src="images\i1.jpg" class="active" alt="Image 1">
-        <img src="images\i2.jpg" alt="Image 2">
-        <img src="images\i3.jpg" alt="Image 3">
-        <img src="images\i4.jpg" alt="Image 4">
+    <div style="padding: 20px;">
+        <div class="image-rotator">
+            <img src="images/i1.jpg" class="active" alt="Image 1">
+            <img src="images/i2.jpg" alt="Image 2">
+            <img src="images/i3.jpg" alt="Image 3">
+            <img src="images/i4.jpg" alt="Image 4">
+        </div>
+        <script>
+            let currentIndex = 0, images = document.querySelectorAll('.image-rotator img'), totalImages = images.length;
+            setInterval(() => { images[currentIndex].classList.remove('active'); currentIndex = (currentIndex + 1) % totalImages; images[currentIndex].classList.add('active'); }, 3000);
+        </script>
+        <h1>Welcome to Inventory Management System</h1>
+        <p>Manage your products and categories efficiently with this simple system built using PHP and MySQL.</p>
+        <p>Click the links above to explore product and category management. Use the "Admin" button to logout.</p>
     </div>
-
-    <script>
-        // JavaScript for rotating images every 3 seconds
-        let currentIndex = 0;
-        const images = document.querySelectorAll('.image-rotator img');
-        const totalImages = images.length;
-
-        function rotateImages() {
-            // Remove the active class from the current image
-            images[currentIndex].classList.remove('active');
-
-            // Update index to the next image
-            currentIndex = (currentIndex + 1) % totalImages;
-
-            // Add the active class to the new image
-            images[currentIndex].classList.add('active');
-        }
-
-        // Rotate images every 3 seconds (3000 ms)
-        setInterval(rotateImages, 3000);
-    </script>
-    <h1>Welcome to Inventory Management System</h1>
-    <p>This is a simple inventory management system that allows you to manage products and categories.</p>
-    <p>It is built using PHP, MySQL, and Bootstrap.</p>
-    <p>Click on the links above to manage products and categories.</p>
-    <p>Click on the "Admin" button to logout.</p>
-</div>
-<marquee behavior="scroll" direction="left">Made By Prince Solanki</marquee>
+    <marquee behavior="scroll" direction="left">Made By Prince Solanki</marquee>
 </body>
 </html>
